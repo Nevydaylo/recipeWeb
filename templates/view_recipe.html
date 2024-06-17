@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ recipe.title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f0f4f8;
+            color: #343a40;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+
+        #spoonacularPriceBreakdownChart{
+        display: none;
+        }
+
+        h1 {
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .summary {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+
+        .ingredients-list ul, .instruction-list ol {
+            padding-left: 20px;
+        }
+
+        .ingredients-list ul {
+            list-style: disc;
+        }
+
+        .instruction-list ol {
+            list-style: decimal;
+        }
+
+        .summary-info, .source-info {
+            margin: 20px 0;
+        }
+
+        .favorite-button {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-size: 24px;
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .favorite-button:hover {
+            transform: scale(1.2);
+            color: #ff4b4b;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ recipe.title }}</h1>
+        {% if recipe.image %}
+        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+        {% endif %}
+        <p class="summary">{{ recipe.summary|safe }}</p>
+
+        <div class="section-title">Ingredients</div>
+        <div class="ingredients-list">
+            <ul>
+                {% for ingredient in recipe.extendedIngredients %}
+                <li>{{ ingredient.original }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section-title">Instructions</div>
+        <div class="instruction-list">
+            <ol>
+                {% for step in recipe.analyzedInstructions[0].steps %}
+                <li>{{ step.step }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        
+        <div class="summary-info">
+            <p>{{ recipe_summary|safe }}</p>
+        </div>
+        <form method="POST" action="{{ url_for('add_to_favorites') }}">
+            <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+            <button type="submit" class="favorite-button"><i class="fas fa-heart"></i> Add to Favorites</button>
+        </form>
+        <a href="{{ url_for('index', search_query=search_query) }}" class="back-button">Back to Results</a>
+    </div>
+</body>
+</html>
