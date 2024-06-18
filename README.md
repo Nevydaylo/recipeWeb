@@ -1,3 +1,5 @@
+### Nevydaylo Dima FA-C26
+
 # Recipe App
 
 ## Overview
@@ -80,8 +82,6 @@ The app integrates with the Spoonacular API to fetch recipe data. Ensure you hav
 [Python Documentation](https://docs.python.org/3/),
 
 [Flask Documentation](https://docs.python.org/3/),
-
-[Google](google.com),
 
 [w3Schools](https://www.w3schools.com/python/),
 
