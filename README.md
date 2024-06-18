@@ -78,7 +78,7 @@ The app integrates with the Spoonacular API to fetch recipe data. Ensure you hav
 - Search Recipes: Uses the complexSearch endpoint to fetch recipes based on a query.
 - Recipe Details: Uses the information endpoint to fetch detailed information about a recipe.
 
-## Sources 
+# References
 [Spoonacular API](https://spoonacular.com/food-api),
 
 [Python Documentation](https://docs.python.org/3/),
