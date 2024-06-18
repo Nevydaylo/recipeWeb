@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import requests
 from urllib.parse import unquote
 import logging
@@ -65,7 +65,7 @@ def add_to_favorites():
         session['favorites'].append(recipe_id)
         session.modified = True
     logging.debug(f'Added recipe {recipe_id} to favorites. Current favorites: {session["favorites"]}')
-    return redirect(url_for('favorites'))
+    return jsonify({'status': 'success', 'message': 'Recipe added to favorites'})
 
 @app.route('/favorites')
 def favorites():
