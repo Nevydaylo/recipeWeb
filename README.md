@@ -1,4 +1,6 @@
-### Nevydaylo Dima FA-C26
+## Author information:
+- Nevydaylo Dima
+- FI-C 26
 
 # Recipe App
 
