@@ -1,3 +1,5 @@
+![screenshot](/images/Screenshot.png)
+
 ## Author information:
 - Nevydaylo Dima
 - FI-C 26
